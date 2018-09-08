@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>Login.</h1>
+<form action="" method="POST" novalidate>
+	<!-- CSRF PROTECTION -->
+	{{ form.hidden_tag() }}
+	<p>
+		{{ form.email.label }}
+		{{ form.email(size=255) }}
+	</p>
+	<p>
+		{{ form.password.label }}
+		{{ form.password(size=255) }}
+	</p>
+	<p>
+		{{ form.remember_me() }}
+		{{ form.remember_me.label }}
+	</p>
+	<p>
+		{{ form.submit() }}
+	</p>
+</form>
+{% endblock %}
