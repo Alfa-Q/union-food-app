@@ -12,8 +12,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired()], render_kw={"placeholder":"Email Address"})
+    password = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder":"Password"})
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
@@ -22,8 +22,6 @@ class PaymentForm(FlaskForm):
     cardname = StringField('Name on Card', validators=[DataRequired()])
     cardcode = StringField('CVC', validators=[DataRequired()])
     submit = SubmitField('Submit')
-
-    
 
 class RegisterForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
