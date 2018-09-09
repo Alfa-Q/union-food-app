@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h1>Login.</h1>
+<h1>Register</h1>
 <form action="" method="POST" novalidate>
 	<!-- CSRF PROTECTION -->
 	{{ form.hidden_tag() }}
@@ -9,6 +9,7 @@
 		{{ form.email.label }}
 		{{ form.email(size=255) }}
 		{% for error in form.email.errors %}
+		<p>Test</p>
 		<span style="color: red;">[{{ error }}]</span>
 		{% endfor %}
 	</p>
@@ -20,8 +21,11 @@
 		{% endfor %}
 	</p>
 	<p>
-		{{ form.remember_me() }}
-		{{ form.remember_me.label }}
+		{{ form.password_confirm.label }}
+		{{ form.password_confirm(size=255) }}
+		{% for error in form.password.errors %}
+		<span style="color: red;">[{{ error }}]</span>
+		{% endfor %}
 	</p>
 	<p>
 		{{ form.submit() }}
