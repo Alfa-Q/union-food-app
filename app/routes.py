@@ -46,6 +46,15 @@ def login():
         
     return render_template('login.html', title='Login', form=form)
 
+@app.route('/union')
+def union():
+    return render_template('locations/union.html', title='Union')
+
+@app.route('/lassonde')
+def lassonde():
+    return render_template('locations/lassonde.html', title='Lassonde')
+
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
