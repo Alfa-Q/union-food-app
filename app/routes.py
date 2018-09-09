@@ -66,6 +66,10 @@ def register():
         flash('Issue with registration')
     return render_template('register.html', title='Register', form=RegisterForm())
 
+@app.route('/payment')
+def payments():
+    return render_template('payments.html', title='Payment')
+
 @app.route('/logout')
 def logout():
     logout_user()
