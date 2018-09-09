@@ -1,3 +1,14 @@
-.bg-header-red {
-    background-color: darkred;
+body {
+  background-color:lightblue;
 }
+
+.navbar-brand {
+  padding:0px !important;
+	margin:0px !important;
+}
+
+.navbar {
+  height:15%;
+  margin:5px;
+}
+
