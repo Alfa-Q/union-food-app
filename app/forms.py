@@ -7,6 +7,8 @@ Webpage forms.
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
+from app import mongo
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class LoginForm(FlaskForm):
@@ -23,8 +25,15 @@ class RegisterForm(FlaskForm):
     submit = SubmitField('Register')
 
     def validate_email(self, email):
-        pass
-        #user = User.query.filter_by()
-        # USER = GET USERNAME
-        # IF USER IS NOT NONE
-        #  RAISE VALIDATION ERROR
+        results = mongo.db.Users.find_one({'email': self.email.data})
+        print("IN VALIDATE")
+        if results is None:
+            #User isn't in DB, add user
+            if self.password.data == self.password_confirm.data:
+                hash = generate_password_hash(self.password.data)
+                mongo.db.Users.insert({'email':self.email.data, 'password_hash': hash})
+                return True
+            else:
+                return False #Passwords do not match
+        else:
+            return False #Username already exists

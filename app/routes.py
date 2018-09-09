@@ -49,7 +49,9 @@ def lassonde():
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        # ADD THE OTHER SHIT
+
         flash('Registered!')
-        return redirect(url_for('/index'))
+        return redirect('/')
+    else:
+        flash('Issue with registration')
     return render_template('register.html', title='Register', form=RegisterForm())
