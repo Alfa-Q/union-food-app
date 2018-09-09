@@ -13,6 +13,20 @@
 				<!-- CSRF PROTECTION -->
 				{{ form.hidden_tag() }}
 				<div class="form-group">
+					{{ form.first_name.label }}
+					{{ form.first_name(size=255, class_="form-control") }}
+					{% for error in form.first_name.errors %}
+					<span style="color: red;">[{{ error }}]</span>
+					{% endfor %}
+				</div>
+				<div class="form-group">
+					{{ form.last_name.label }}
+					{{ form.last_name(size=255, class_="form-control") }}
+					{% for error in form.last_name.errors %}
+					<span style="color: red;">[{{ error }}]</span>
+					{% endfor %}
+				</div>
+				<div class="form-group">
 					{{ form.email.label }}
 					{{ form.email(size=255, class_="form-control") }}
 					{% for error in form.email.errors %}
@@ -29,7 +43,7 @@
 				<div class="form-group">
 					{{ form.password_confirm.label }}
 					{{ form.password_confirm(size=255, class="form-control") }}
-					{% for error in form.password.errors %}
+					{% for error in form.password_confirm.errors %}
 					<span style="color: red;">[{{ error }}]</span>
 					{% endfor %}
 				</div>

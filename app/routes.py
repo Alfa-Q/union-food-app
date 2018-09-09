@@ -30,11 +30,11 @@ def login():
             form.email.data, form.remember_me.data))
 
         results = mongo.db.Users.find_one({'email': form.email.data})
-        user = User(form.email.data, results.get('_id'))
 
         print(results)
 
         if not results is None:
+            user = User(results.get('first_name'), results.get('last_name'), form.email.data, results.get('_id'))
             # Validate password
             valid_user = User.check_password(results.get('password_hash'), form.password.data)
 

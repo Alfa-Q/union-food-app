@@ -18,6 +18,8 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 class RegisterForm(FlaskForm):
+    first_name = StringField('First Name', validators=[DataRequired()])
+    last_name = StringField('Last Name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     password_confirm = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
@@ -30,7 +32,7 @@ class RegisterForm(FlaskForm):
             #User isn't in DB, add user
             if self.password.data == self.password_confirm.data:
                 hash = generate_password_hash(self.password.data)
-                mongo.db.Users.insert({'email':self.email.data, 'password_hash': hash})
+                mongo.db.Users.insert({'email':self.email.data, 'password_hash': hash, 'first_name':self.first_name.data, 'last_name':self.last_name.data})
                 return True
             else:
                 return False #Passwords do not match
