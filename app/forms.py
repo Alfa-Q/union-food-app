@@ -47,6 +47,22 @@ class AccountForm(FlaskForm):
     password_confirm = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Update')
 
+class ResetPasswordRequestForm(FlaskForm):
+    email  = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Reset Password')
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('New Password', validators=[DataRequired()])
+    password_confirm = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Update')
+
+    def validate_password(self, password):
+        if self.password.data == self.password_confirm.data:
+            self.hash = generate_password_hash(self.password.data)
+        else:
+            raise ValidationError('Mismatching passwords.')
+    
+
 class PaymentForm(FlaskForm):
     cardnumber = StringField('Card Number', validators=[DataRequired()])
     cardname = StringField('Name on Card',  validators=[DataRequired()])
