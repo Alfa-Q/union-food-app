@@ -42,6 +42,9 @@ class RegisterForm(FlaskForm):
             else:
                 return False #Passwords do not match
         else:
+<<<<<<< HEAD
+            return False #Username already exists
+=======
             return False     #Email already exists
 
 class PandaForm(FlaskForm):
@@ -63,3 +66,4 @@ class PaymentForm(FlaskForm):
     cardname = StringField('Name on Card',  validators=[DataRequired()])
     cardcode = StringField('CVC', validators=[DataRequired()])
     submit = SubmitField('Submit')
+>>>>>>> 317a1d4faf67c1bc0afc757a3baad2c4ae521c2a
