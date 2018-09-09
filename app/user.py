@@ -10,7 +10,9 @@ from hashlib import md5
 
 class User(UserMixin):
 
-    def __init__(self, email, id):
+    def __init__(self, first, last, email, id):
+        self.first_name = first
+        self.last_name = last
         self.email = email
         self.id = str(id)
 
@@ -36,6 +38,6 @@ def load_user(email):
     u = mongo.db.Users.find_one({"email": email})
     if not u:
         return None
-    return User(u['email'], str(u['_id']))
+    return User(u['first_name'], u['last_name'], u['email'], str(u['_id']))
 
 
