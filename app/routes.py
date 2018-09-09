@@ -48,7 +48,8 @@ def login():
 
 @app.route('/union')
 def union():
-    return render_template('locations/union.html', title='Union')
+    restaurants = mongo.db.UnionFood.find()
+    return render_template('locations/union.html', title='Union', restaurants=restaurants)
 
 @app.route('/lassonde')
 def lassonde():

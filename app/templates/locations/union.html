@@ -3,67 +3,31 @@
 {% block body %}
 
 
+<div class="container">
 
-<div class="page-header">
-    <h1 class="text-center" style="font-size:200%; background-color:red; font-family:helvetica;">
-        <bold> Select your eatery of choice. </bold>
-    </h1>
-</div>
-
-
-<div class="container-fluid">
-    <div class="panel-group">
-        <div class="=panel panel-default">
-            <div class="panel-heading">
-                <h2 class="text-center"> Panda Express</h2>
-            </div>
-            <div class="panel-body">
-                <p class="text-center"> Description of the eatery and maybe some images. </p>
-            </div>
-
-            <div class="panel-heading">
-                <h2 class="text-center"> The Hive</h2>
-            </div>
-            <div class="panel-body">
-                <p class="text-center"> Description of the eatery and maybe some images. </p>
-            </div>
-
-            <div class="panel-heading">
-                <h2 class="text-center"> Einstein's Bagels</h2>
-            </div>
-            <div class="panel-body">
-                <p class="text-center"> Description of the eatery and maybe some images. </p>
-            </div>
-
-            <div class="panel-heading">
-                <h2 class="text-center"> Jamba Juice</h2>
-            </div>
-            <div class="panel-body">
-                <p class="text-center"> Description of the eatery and maybe some images. </p>
-            </div>
-
-            <div class="panel-heading">
-                <h2 class="text-center"> Burrito Place</h2>
-            </div>
-            <div class="panel-body">
-                <p class="text-center"> Description of the eatery and maybe some images. </p>
-            </div>
-
-            <div class="panel-heading">
-                <h2 class="text-center"> Sandwich Place</h2>
-            </div>
-            <div class="panel-body">
-                <p class="text-center"> Description of the eatery and maybe some images. </p>
-            </div>
-
-            <div class="panel-heading">
-                <h2 class="text-center"> Salad Place</h2>
-            </div>
-            <div class="panel-body">
-                <p class="text-center"> Description of the eatery and maybe some images. </p>
-            </div>
+        <h1 class="my-4">Restaurant
+        </h1>
+  
+        {% for restaurant in restaurants %}
+        <div class="row">
+          <div class="col-md-7">
+            <a href="#">
+              <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
+            </a>
+          </div>
+          <div class="col-md-5">
+            <h3>{{restaurant.name}}</h3>
+            <p>{{restaurant.info}}</p>
+            <a class="btn btn-primary" href="#">Food Options</a>
+          </div>
         </div>
-    </div>
+        
+  
+        <hr>
+
+        {% endfor %}
+        </div>
+
 </div>
 
 {% endblock %}
