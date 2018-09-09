@@ -1,3 +1,7 @@
 .bg-header-red {
     background-color: darkred;
 }
+
+.panel-default {
+    border-color: black
+}
