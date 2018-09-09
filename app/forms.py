@@ -17,14 +17,6 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
-class PaymentForm(FlaskForm):
-    cardnumber = StringField('Card Number', validators=[DataRequired()])
-    cardname = StringField('Name on Card', validators=[DataRequired()])
-    cardcode = StringField('CVC', validators=[DataRequired()])
-    submit = SubmitField('Submit')
-
-    
-
 class RegisterForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])

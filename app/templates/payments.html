@@ -10,6 +10,7 @@
     </head>
 
     <body>
+    <form action="" method="POST">
         <div class="card" style="width: 50%;">
             <div class="card-header">
                 Payment Information
@@ -20,7 +21,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"> Card Number </span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Card Number">
+                        <input type="text" class="form-control" name="cardnumber" placeholder="Card Number">
                     </div>
                 </li>
                 <li class="list-group-item">
@@ -28,7 +29,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"> Name on Card </span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Name on Card">
+                        <input type="text" class="form-control" name="cardname" placeholder="Name on Card">
                     </div>
                 </li>
                 <li class="list-group-item">
@@ -36,7 +37,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"> CVC </span>
                         </div>
-                        <input type="text" class="form-control" placeholder="CVC">
+                        <input type="text" class="form-control" name="cardcode" placeholder="CVC">
                     </div>
                 </li>
                 <li class="list-group-item">
@@ -51,7 +52,7 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text"> Month </label>
                                 </div>
-                                <select class="custom-select">
+                                <select class="custom-select" name="month">
                                     <option selected> Month </option>
                                     <option value="1">January</option>
                                     <option value="2">February</option>
@@ -73,7 +74,7 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text"> Year </label>
                                 </div>
-                                <select class="custom-select">
+                                <select class="custom-select" name="year">
                                     <option selected> Year </option>
                                     <option value="1">2018</option>
                                     <option value="2">2019</option>
@@ -105,6 +106,7 @@
                 </li>
             </ul>
         </div>
+    </form>
     </body>
 
 </html>

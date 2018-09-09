@@ -4,7 +4,7 @@ routes.py
 Webpage navigation.
 """
 
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, request
 from app import app, mongo
 from app.forms import LoginForm, RegisterForm
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -69,6 +69,17 @@ def register():
 @app.route('/payment')
 def payments():
     return render_template('payments.html', title='Payment')
+
+@app.route('/check', methods=['GET', 'POST'])
+def check_payments():
+    cardnumber = request.form['cardnumber']
+    cardname = request.form['cardname']
+    cardcode = request.form['cardcode']
+    cardmonth = request.form['month']
+    cardyear = request.form['year']
+
+    return render_template('check.html', title='Payment Check', cardnumber = cardnumber, cardname = cardname,
+                           cardcode = cardcode, month = cardmonth, year = cardyear)
 
 @app.route('/logout')
 def logout():
