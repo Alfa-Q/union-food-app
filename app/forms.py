@@ -42,9 +42,6 @@ class RegisterForm(FlaskForm):
             else:
                 return False #Passwords do not match
         else:
-<<<<<<< HEAD
-            return False #Username already exists
-=======
             return False     #Email already exists
 
 class PandaForm(FlaskForm):
@@ -75,11 +72,10 @@ class ResetPasswordForm(FlaskForm):
             self.hash = generate_password_hash(self.password.data)
         else:
             raise ValidationError('Mismatching passwords.')
-    
 
 class PaymentForm(FlaskForm):
     cardnumber = StringField('Card Number', validators=[DataRequired()])
     cardname = StringField('Name on Card',  validators=[DataRequired()])
     cardcode = StringField('CVC', validators=[DataRequired()])
     submit = SubmitField('Submit')
->>>>>>> 317a1d4faf67c1bc0afc757a3baad2c4ae521c2a
+

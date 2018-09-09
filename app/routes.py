@@ -64,7 +64,6 @@ def union():
 def lassonde():
     return render_template('locations/lassonde.html', title='Lassonde')
 
-
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     """ Only display the webpage if the user is logged in. """
@@ -77,7 +76,6 @@ def register():
 
     flash('Issue with registration')
     return render_template('register.html', title='Register', form=RegisterForm())
-
 
 @app.route('/payment')
 def payments():
@@ -235,7 +233,6 @@ def charge_card(cardnum, cardname, cc, month, year, fn, ln, country, state, addr
 
     return response
 
-
 @app.route('/logout')
 def logout():
     logout_user()
@@ -247,11 +244,6 @@ def account():
     if current_user.is_authenticated:
         return render_template('account.html', title='Account', form=AccountForm())
     return redirect(url_for('login'))
-
-@app.route('/payment')
-def payments():
-    return render_template('payments.html', title='Payment')
-
 
 @app.route('/reset_password_request', methods=['GET', 'POST'])
 def reset_password_request():
