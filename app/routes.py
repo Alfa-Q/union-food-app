@@ -64,7 +64,6 @@ def register():
 
     form = RegisterForm()
     if form.validate_on_submit():
-        login_user(user, remember=form.remember_me.data)
         return redirect(url_for('index'))
 
     flash('Issue with registration')
@@ -81,14 +80,6 @@ def account():
     if current_user.is_authenticated:
         return render_template('account.html', title='Account', form=AccountForm())
     return redirect(url_for('login'))
-
-@app.route('/union')
-def union():
-    return render_template('locations/union.html', title='Union')
-
-@app.route('/lassonde')
-def lassonde():
-    return render_template('locations/lassonde.html', title='Lassonde')
 
 @app.route('/payment')
 def payments():

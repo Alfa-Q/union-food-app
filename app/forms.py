@@ -9,6 +9,8 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app import mongo
 from werkzeug.security import generate_password_hash, check_password_hash
+from app.user import User
+from flask_login import login_user
 
 
 class LoginForm(FlaskForm):
@@ -33,6 +35,9 @@ class RegisterForm(FlaskForm):
             if self.password.data == self.password_confirm.data:
                 hash = generate_password_hash(self.password.data)
                 mongo.db.Users.insert({'email':self.email.data, 'password_hash': hash, 'first_name':self.first_name.data, 'last_name':self.last_name.data})
+                result = mongo.db.Users.find_one({'email': self.email.data})
+                user = User(self.first_name.data, self.last_name.data, self.email.data, result.get('_id'))
+                login_user(user)
                 return True
             else:
                 return False #Passwords do not match
