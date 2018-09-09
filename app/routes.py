@@ -13,22 +13,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 @app.route('/')
 @app.route('/index')
 def index():
-<<<<<<< HEAD
     return render_template("index.html", title='Homepage')
-=======
-    return render_template("index.html", title="Homepage")
->>>>>>> 72ca6a80a32df26cea8ec11e66f5309cc937df5e
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-<<<<<<< HEAD
-    return render_template('login.html', title='Login', form=LoginForm())
-
-@app.route('/test')
-def test():
-    return render_template('test.html', title='Test Page')
-
-=======
     form = LoginForm()
     if form.validate_on_submit():
         print("Email is " + form.email.data)
@@ -58,4 +46,3 @@ def register():
     else:
         flash('Issue with registration')
     return render_template('register.html', title='Register', form=RegisterForm())
->>>>>>> 72ca6a80a32df26cea8ec11e66f5309cc937df5e

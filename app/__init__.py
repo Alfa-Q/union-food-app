@@ -11,7 +11,8 @@ from config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
-app.config["MONGO_URI"] = "mongodb://localhost:27017/UEat"
+app.config["MONGO_URI"] = "mongodb+srv://admin:josh12345@cluster0-ghotr.gcp.mongodb.net/UEat"
+# 
 mongo = PyMongo(app)
 
 
