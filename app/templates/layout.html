@@ -15,7 +15,7 @@
   <body>
 	
 		<!-- Navbar Header -->
-		<nav class="navbar shadow-sm p-3 mb-5 bg-white rounded">
+		<nav class="navbar shadow-sm navbar-expand-sm navbar-light bg-light">
 		
 			<!-- Logo Top Bar -->
 			<div class="navbar-header">
@@ -44,9 +44,17 @@
 			<!-- Links -->
 			<ul class="navbar-nav ml-auto">
 				{% if current_user.is_authenticated %}
-				<li class="nav-item">Hello, {{ current_user.email }}</li>
-				<li><img src="{{ current_user.avatar(64) }}"></li>
-				<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+				<li class="nav-item"><img src="{{ current_user.avatar(48) }}"></li>
+				<!-- Dropdown -->
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+					  User Settings
+					</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">User Profile</a>
+					  <a class="dropdown-item" href="/logout">Logout</a>
+					</div>
+				  </li>
 				{% else %}
 				<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
 				<li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
