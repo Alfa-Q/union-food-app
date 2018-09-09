@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="container bg-light">
+
+  <h1 class="my-4">Panda Express
+    <small>Meal Options</small>
+  </h1>
+
+  {% for item in items %}
+        <div class="container">
+          {% if item.food %}
+          <h2>{{item.food}}</h2>
+          {% else %}
+          <h2>{{item.drink}}</h2>
+          {% endif %}
+
+          {% if item.available%}
+          <p>Available: {{item.available}}</p>
+          {% endif %}
+
+          {% if item.calories%}
+          <p>Calories: {{item.calories}}</p>
+          {% endif %}
+
+          {% if item.spicy%}
+          <p>Spicy: {{item.spicy}}</p>
+          {% endif %}
+
+          {% if item.wok_smart%}
+          <p>Wok Smart: {{item.wok_smart}}</p>
+          {% endif %}
+
+          {% if item.premium%}
+          <p>Premium: {{item.premium}}</p>
+          {% endif %}
+
+          {% if item.type%}
+          <p>Type: {{item.type}}</p>
+          {% endif %}
+        </div>
+
+        <hr>
+        {% endfor %}
+        </div>
+
+</div>
+
+{% endblock %}
