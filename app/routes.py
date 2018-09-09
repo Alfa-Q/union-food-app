@@ -78,6 +78,7 @@ def register():
     flash('Issue with registration')
     return render_template('register.html', title='Register', form=RegisterForm())
 
+
 @app.route('/payment')
 def payments():
     return render_template('payments.html')
@@ -234,6 +235,7 @@ def charge_card(cardnum, cardname, cc, month, year, fn, ln, country, state, addr
 
     return response
 
+
 @app.route('/logout')
 def logout():
     logout_user()
@@ -281,6 +283,7 @@ def reset_password(token):
         return redirect(url_for('login'))
     return render_template('reset_password.html', title='Reset Password', form=form)
 
+@app.route('/panda-express')
 def panda():
     food_items = mongo.db.PandaExpressFood.find()
     return render_template('restaurants/panda-express.html', title='Panda Express', items=food_items)
