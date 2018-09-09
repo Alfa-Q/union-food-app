@@ -6,7 +6,7 @@ Webpage navigation.
 
 from flask import render_template, flash, redirect, url_for, request
 from app import app, mongo
-from app.forms import LoginForm, RegisterForm
+from app.forms import LoginForm, RegisterForm, PaymentForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import current_user, login_user, logout_user
 from app.user import User
@@ -66,9 +66,19 @@ def register():
         flash('Issue with registration')
     return render_template('register.html', title='Register', form=RegisterForm())
 
-@app.route('/payment')
+@app.route('/payment', methods=['GET', 'POST'])
 def payments():
-    return render_template('payments.html', title='Payment')
+    if request.method == 'GET':
+        return render_template('payments.html', title='Payment')
+
+    cardnumber = request.form['cardnumber']
+    cardname = request.form['cardname']
+    cardcode = request.form['cardcode']
+    cardmonth = request.form['month']
+    cardyear = request.form['year']
+
+    return render_template('check.html', title='Payment Check', cardnumber = cardnumber, cardname = cardname,
+                           cardcode = cardcode, month = cardmonth, year = cardyear)
 
 @app.route('/check', methods=['GET', 'POST'])
 def check_payments():

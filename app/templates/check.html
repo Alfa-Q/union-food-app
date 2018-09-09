@@ -1,6 +1,7 @@
-{%extends "layout.html"%}
+{% extends "layout.html" %}
 
-{% block body %}
+{% block content %}
+<form method="POST">
 <h1> Check </h1>
 
 <p> Card number : {{ cardnumber }}</p>
@@ -8,3 +9,6 @@
 <p> Card code : {{ cardcode}} </p>
 <p> Expiration month : {{ month }} </p>
 <p> Expiration year : {{ year }} </p>
+</form>
+
+(% endblock %)
