@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container-fluid account-info">
+	<!-- Sidebar -->
+	<div class="nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+		<a class="nav-link active" id="v-pills-account-tab" data-toggle="pill" href="#v-pills-account" role="tab" aria-controls="v-pills-account" aria-selected="true">Account</a>
+		<a class="nav-link" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">History</a>
+		<a class="nav-link" id="v-pills-delete-tab" data-toggle="pill" href="#v-pills-delete" role="tab" aria-controls="v-pills-delete" aria-selected="false">Delete Account</a>
+	</div>
+	<div class="tab-content" id="v-pills-tabContent">
+		<div class="tab-pane fade show active" id="v-pills-account" role="tabpanel" aria-labelledby="v-pills-account-tab">
+				<form action="" method="POST" novalidate>
+				<!-- CSRF PROTECTION -->
+				{{ form.hidden_tag() }}
+				<div class="form-group">
+					{{ form.first_name.label }}
+					{{ form.first_name(size=255, class_="form-control") }}
+					{% for error in form.first_name.errors %}
+					<span style="color: red;">[{{ error }}]</span>
+					{% endfor %}
+				</div>
+				<div class="form-group">
+					{{ form.last_name.label }}
+					{{ form.last_name(size=255, class_="form-control") }}
+					{% for error in form.last_name.errors %}
+					<span style="color: red;">[{{ error }}]</span>
+					{% endfor %}
+				</div>
+				<div class="form-group">
+					{{ form.email.label }}
+					{{ form.email(size=255, class_="form-control") }}
+					{% for error in form.email.errors %}
+					<span style="color: red;">[{{ error }}]</span>
+					{% endfor %}
+				</div>
+				<div class="form-group">
+					{{ form.password.label }}
+					{{ form.password(size=255, class_="form-control") }}
+					{% for error in form.password.errors %}
+					<span style="color: red;">[{{ error }}]</span>
+					{% endfor %}
+				</div>
+				<div class="form-group">
+					{{ form.password_confirm.label }}
+					{{ form.password_confirm(size=255, class="form-control") }}
+					{% for error in form.password_confirm.errors %}
+					<span style="color: red;">[{{ error }}]</span>
+					{% endfor %}
+				</div>
+				{{ form.submit(class_="btn btn-primary") }}
+			</form>
+		</div>
+		<div class="tab-pane fade" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab">
+			<!-- for transaction in transactions -->
+			<!-- GENERATE TRANSACTIONS TO DISPLAY -->
+		</div>
+		<div class="tab-pane fade" id="v-pills-delete" role="tabpanel" aria-labelledby="v-pills-delete-tab">
+			<!-- DELETE USER PROFILE -- >
+		</div>
+	</div>
+</div>
+{% endblock %}

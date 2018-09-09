@@ -19,7 +19,7 @@ class LoginForm(FlaskForm):
 
 class RegisterForm(FlaskForm):
     first_name = StringField('First Name', validators=[DataRequired()])
-    last_name = StringField('Last Name', validators=[DataRequired()])
+    last_name = StringField('Last Name',  validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     password_confirm = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
@@ -37,11 +37,18 @@ class RegisterForm(FlaskForm):
             else:
                 return False #Passwords do not match
         else:
-            return False #Username already exists
+            return False     #Email already exists
 
+class AccountForm(FlaskForm):
+    first_name = StringField('First Name', validators=[DataRequired()])
+    last_name  = StringField('Last Name',  validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('New Password', validators=[DataRequired()])
+    password_confirm = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Update')
 
 class PaymentForm(FlaskForm):
     cardnumber = StringField('Card Number', validators=[DataRequired()])
-    cardname = StringField('Name on Card', validators=[DataRequired()])
+    cardname = StringField('Name on Card',  validators=[DataRequired()])
     cardcode = StringField('CVC', validators=[DataRequired()])
     submit = SubmitField('Submit')
