@@ -40,16 +40,18 @@
 				</ul>
 			<!-- </div> -->
 			
-			<!-- Right Nav Info -->
-			<ul class="nav navbar-nav navbar-right">
+
+			<!-- Links -->
+			<ul class="navbar-nav ml-auto">
 				{% if current_user.is_authenticated %}
-				<li>Hello, {{ current_user.email }}</li>
-				<li><a href="/logout" class="d-inline-block">Logout</a></li>
+				<li class="nav-item">Hello, {{ current_user.email }}</li>
+				<li><img src="{{ current_user.avatar(64) }}"></li>
+				<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
 				{% else %}
-				<li><a href="/login" class="d-inline-block">Login</a></li>
-				<li><a href="/register" class="d-inline-block">Register</a></li>
+				<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+				<li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
 				{% endif %}
-				
+
 			</ul>
 			
 		</nav>

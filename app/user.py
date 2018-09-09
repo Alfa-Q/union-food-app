@@ -6,6 +6,7 @@ User class.
 from werkzeug.security import check_password_hash
 from flask_login import UserMixin
 from app import login, mongo
+from hashlib import md5
 
 class User(UserMixin):
 
@@ -23,6 +24,11 @@ class User(UserMixin):
     # Using email instead of actual id
     def get_id(self):
         return self.email
+
+    def avatar(self, size):
+        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
+        return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
+            digest, size)
 
     
 @login.user_loader
