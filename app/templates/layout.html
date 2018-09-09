@@ -34,8 +34,13 @@
 			</div>
 			<!-- Right Nav Info -->
 			<ul class="nav navbar-nav navbar-right">
+				{% if current_user.is_authenticated %}
+				<li>Hello, {{ current_user.email }}</li>
+				<li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+				{% else %}
 				<li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
 				<li><a href="/register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+				{% endif %}
 			</ul>
 			
 		</nav>
