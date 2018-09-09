@@ -20,7 +20,7 @@ def index():
 def login():
     if current_user.is_authenticated:
         print("User is already authenticated!")
-        return redirect('/')
+        return redirect('/union')
     else:
         print("User is not authenticated.")
 
@@ -41,7 +41,7 @@ def login():
             if valid_user:
                 login_user(user, remember=form.remember_me.data)
                 print("User logged in!")
-                return redirect('/')
+                return redirect('/union')
 
         
     return render_template('login.html', title='Login', form=form)
