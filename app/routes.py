@@ -84,3 +84,8 @@ def account():
 @app.route('/payment')
 def payments():
     return render_template('payments.html', title='Payment')
+
+@app.route('/panda-express')
+def panda():
+    food_items = mongo.db.PandaExpressFood.find()
+    return render_template('restaurants/panda-express.html', title='Panda Express', items=food_items)

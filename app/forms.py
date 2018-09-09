@@ -5,7 +5,7 @@ Webpage forms.
 """
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, RadioField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app import mongo
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -43,6 +43,12 @@ class RegisterForm(FlaskForm):
                 return False #Passwords do not match
         else:
             return False     #Email already exists
+
+class PandaForm(FlaskForm):
+    meal_size = RadioField('Meal Size', validators=[DataRequired()], choices=['Bowl','Small Plate', 'Big Plate'])
+    entrees = SelectField(u'Field name', choices = ['fake', 'rad'], validators = [DataRequired()])
+    drink = StringField('Drink', validators=[DataRequired(), Email()])
+    submit = SubmitField('Order')
 
 class AccountForm(FlaskForm):
     first_name = StringField('First Name', validators=[DataRequired()])
