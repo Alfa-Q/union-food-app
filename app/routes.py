@@ -6,7 +6,7 @@ Webpage navigation.
 
 from flask import render_template, flash, redirect, url_for
 from app import app, mongo
-from app.forms import LoginForm, RegisterForm
+from app.forms import LoginForm, RegisterForm, AccountForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import current_user, login_user, logout_user
 from app.user import User
@@ -30,11 +30,11 @@ def login():
             form.email.data, form.remember_me.data))
 
         results = mongo.db.Users.find_one({'email': form.email.data})
-        user = User(form.email.data, results.get('_id'))
 
         print(results)
 
         if not results is None:
+            user = User(results.get('first_name'), results.get('last_name'), form.email.data, results.get('_id'))
             # Validate password
             valid_user = User.check_password(results.get('password_hash'), form.password.data)
 
@@ -46,6 +46,32 @@ def login():
         
     return render_template('login.html', title='Login', form=form)
 
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    """ Only display the webpage if the user is logged in. """
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+
+    form = RegisterForm()
+    if form.validate_on_submit():
+        login_user(user, remember=form.remember_me.data)
+        return redirect(url_for('index'))
+
+    flash('Issue with registration')
+    return render_template('register.html', title='Register', form=RegisterForm())
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect('/')
+
+@app.route('/account')
+def account():
+    """ Only display the webpage if the user is logged in. """
+    if current_user.is_authenticated:
+        return render_template('account.html', title='Account', form=AccountForm())
+    return redirect(url_for('login'))
+
 @app.route('/union')
 def union():
     return render_template('locations/union.html', title='Union')
@@ -54,23 +80,6 @@ def union():
 def lassonde():
     return render_template('locations/lassonde.html', title='Lassonde')
 
-
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    form = RegisterForm()
-    if form.validate_on_submit():
-
-        flash('Registered!')
-        return redirect('/')
-    else:
-        flash('Issue with registration')
-    return render_template('register.html', title='Register', form=RegisterForm())
-
 @app.route('/payment')
 def payments():
     return render_template('payments.html', title='Payment')
-
-@app.route('/logout')
-def logout():
-    logout_user()
-    return redirect('/')
